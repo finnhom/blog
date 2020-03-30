@@ -9,6 +9,13 @@
   <%= comment.body %>
 </p>
 
+<p><%= comment.likes.count %> <%= (comment.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+
+<%= button_to 'Like', article_comment_likes_path(comment_id: comment.id, article_id: comment.article_id), method: :post %>
+<%= button_to 'Unlike', article_comment_like_path(article_id: comment.article_id, comment_id: comment.id), method: :delete %>
+
+<p><%= render plain: article_comment_likes_path(comment_id: comment.id, article_id: comment.article_id)%></p>
+
 <p>
   <%= link_to 'Destroy Comment', [comment.article, comment],
                method: :delete,
