@@ -10,8 +10,7 @@ class LikesController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:comment_id])
     if @comment.likes.count != 0
-      # @comment.likes.destroy(@comment.likes.count)
-      @comment.likes.destroy_all
+      @comment.likes.first.delete
     end
     redirect_to article_path(@article)
   end
